@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import './TextCamp.css';
 
 const TextCamp = (props) => {
@@ -9,11 +10,11 @@ const TextCamp = (props) => {
         const placeholderModificada = `${props.placeholder}...`
     return(
         
-        <div className="text-camp">
+        <div className={`text-camp text-camp-${props.tipo}`}>
             <label>
                 {props.label}
             </label>
-            <input onChange={aoDigitado} required={props.obrigatorio} placeholder={placeholderModificada} />
+            <input onChange={aoDigitado} required={props.obrigatorio} placeholder={placeholderModificada} type={props.tipo}/>
         </div>
     )
 }

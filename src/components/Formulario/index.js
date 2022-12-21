@@ -10,6 +10,8 @@ const Formulario = (props) => {
     const [cargo, setCargo] = useState('');
     const [img, setImg] = useState('');
     const [team, setTeam] = useState('');
+    const [nomeTime, setNomeTime] = useState('');
+    const [corTime, setCorTime] = useState('');
 
     const aoSalvar = (e) => {
         e.preventDefault()   
@@ -26,8 +28,8 @@ const Formulario = (props) => {
     }
 
     return(
-        <section className="formulario">
-            <form onSubmit={aoSalvar}>
+        <section className="formulario-container">
+            <form className="formulario" onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
                 <TextCamp 
                     obrigatorio={true} 
@@ -59,6 +61,36 @@ const Formulario = (props) => {
                 />
                 <Botao>
                     Criar Card
+                </Botao>
+            </form>
+            <form className="formulario" onSubmit={(e)=> {
+                e.preventDefault()
+                props.cadastrarTime({
+                    nome: nomeTime,
+                    cor: corTime,
+                })
+                setCorTime('')
+                setNomeTime('')
+            }}>
+                <h2>Preencha os dados para criar um novo time</h2>
+                <TextCamp 
+                    obrigatorio
+                    label = "Nome" 
+                    placeholder="Digite o nome do time" 
+                    value={nomeTime}
+                    aoAlterado={valor => setNomeTime(valor)}
+                    />
+                    
+                <TextCamp 
+                    obrigatorio 
+                    label = "Cor" 
+                    placeholder="Digite a cor do time" 
+                    value={corTime}
+                    tipo="color"
+                    aoAlterado={valor => setCorTime(valor)}
+                    />
+                <Botao>
+                    Criar um novo time
                 </Botao>
             </form>
         </section>
